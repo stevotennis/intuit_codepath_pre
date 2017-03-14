@@ -1,11 +1,11 @@
 # intuit_codepath_pre
 pre-work for applying to intuit codepath bootcamp
 
-# Pre-work - *Name of App Here*
+# Pre-work - Tip Calculator
 
-**Name of your app** is a tip calculator application for iOS.
+Tippy2 is a tip calculator application for iOS.
 
-Submitted by: **Your Name Here**
+Submitted by: Steven Liu
 
 Time spent: **X** hours spent in total
 
@@ -13,7 +13,7 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is complete:
 
-* [ ] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
+* [x] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 * [ ] Settings page to change the default tip percentage.
 
 The following **optional** features are implemented:
