@@ -18,17 +18,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tipControl: UISegmentedControl!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        UserDefaults.standard.set(0.18, forKey: "tip1")
-//        UserDefaults.standard.synchronize()
-//        UserDefaults.standard.set(0.20, forKey: "tip2")
-//        UserDefaults.standard.synchronize()
-//        UserDefaults.standard.set(0.25, forKey: "tip3")
-//        UserDefaults.standard.synchronize()
+        UserDefaults.standard.set(false, forKey: "settingChanged")
+        UserDefaults.standard.synchronize()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,9 +33,26 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if(UserDefaults.standard.bool(forKey: "settingChanged")){
-            let tip100 = UserDefaults.standard.double(forKey: "tip1")
-            tipControl.selectedSegmentIndex
+        if(UserDefaults.standard.bool(forKey: "settingChanged") == true){
+            let tip1 = UserDefaults.standard.integer(forKey: "tip1")
+            let tip2 = UserDefaults.standard.integer(forKey: "tip2")
+            let tip3 = UserDefaults.standard.integer(forKey: "tip3")
+            
+            let tipPercentages = [Double(tip1)/100.0, Double(tip2)/100.0, Double(tip3)/100.0]
+            
+            let bill = Double(billField.text!) ?? 0
+            let people = Double(peopleField.text!) ?? 1
+            let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
+            let total = bill + tip
+            let split = total/people
+        
+            self.tipControl.setTitle(String(format: "%d", tip1)+"%", forSegmentAt: 0)
+            self.tipControl.setTitle(String(format: "%d", tip2)+"%", forSegmentAt: 1)
+            self.tipControl.setTitle(String(format: "%d", tip3)+"%", forSegmentAt: 2)
+            
+            tipLabel.text = String(format: "$%.2f", tip)
+            totalLabel.text = String(format: "$%.2f", total)
+            splitLabel.text = String(format: "$%.2f", split)
         }
     }
     
@@ -66,11 +78,18 @@ class ViewController: UIViewController {
     @IBAction func calculateTip(_ sender: AnyObject) {
         let tipPercentages = [0.18, 0.20, 0.25]
         
+        /*
+         if(UserDefaults.standard.bool(forKey: "settingChanged") == true){
+            /*TODO: reflect setting change*/
+         }
+         */
+        
         let bill = Double(billField.text!) ?? 0
         let people = Double(peopleField.text!) ?? 1
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
         let split = total/people
+        
         
         
         
@@ -81,6 +100,12 @@ class ViewController: UIViewController {
 
     @IBAction func calcSplit(_ sender: AnyObject) {
         let tipPercentages = [0.18, 0.20, 0.25]
+        
+        /*
+         if(UserDefaults.standard.bool(forKey: "settingChanged") == true){
+         /*TODO: reflect setting change*/
+         }
+         */
         
         let bill = Double(billField.text!) ?? 0
         let people = Double(peopleField.text!) ?? 1

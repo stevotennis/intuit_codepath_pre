@@ -26,15 +26,15 @@ class Setting2ViewController: UIViewController {
     }
     
     @IBAction func SaveSettings(_ sender: Any) {
-        let tip1 = Double(tip1Textfield.text!) ?? 0.18
+        let tip1 = Int(tip1Textfield.text!) ?? 18
         UserDefaults.standard.set(tip1, forKey: "tip1")
         UserDefaults.standard.synchronize()
         
-        let tip2 = Double(tip2Textfield.text!) ?? 0.20
+        let tip2 = Int(tip2Textfield.text!) ?? 20
         UserDefaults.standard.set(tip2, forKey: "tip2")
         UserDefaults.standard.synchronize()
         
-        let tip3 = Double(tip3Textfield.text!) ?? 0.25
+        let tip3 = Int(tip3Textfield.text!) ?? 25
         UserDefaults.standard.set(tip3, forKey: "tip3")
         UserDefaults.standard.synchronize()
         
