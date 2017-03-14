@@ -24,6 +24,8 @@ class ViewController: UIViewController {
         
         UserDefaults.standard.set(false, forKey: "settingChanged")
         UserDefaults.standard.synchronize()
+        
+        /*TODO: deploy decimal keypad*/
     }
 
     override func didReceiveMemoryWarning() {
